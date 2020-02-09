@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheet/main.css">
+  <title>
+    campground
+  </title>
+</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">yelpcAMP</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse justify-content-between">
+    <ul class="navbar-nav ml-auto">
+      <% if(!currentUser){ %>
+      <li class="nav-item">
+        <a class="nav-link" href="/login">login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/register">signup</a>
+      </li>
+      <% }else{ %>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          Hello <%=currentUser.username%></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">logout</a>
+      </li>
+      <% } %>
+    </ul>
+
+  </div>
+</nav>
+<div class="container">
+  <% if(error && error.length>0){ %>
+  <div class="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+    <%}%>
+    <% if(success && success.length>0){ %>
+  <div class="alert alert-warning" role="alert">
+    <%= success %>
+  </div>
+  <%}%>
+</div>
+
+
+
+<body>

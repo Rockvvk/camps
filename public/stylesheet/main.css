@@ -1,0 +1,17 @@
+.container{
+  margin: 30px 20px;
+}
+.lead{
+  margin-left: 40px;
+}
+.list-group{
+  margin-right: 50px;
+}
+.card{
+  margin-left:110px; 
+  padding-bottom: 10;
+}
+#map {
+  height: 400px;
+  width: 100%;
+}

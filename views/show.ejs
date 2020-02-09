@@ -1,0 +1,95 @@
+<%- include("partials/header") %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <p class="lead">Yelp Camp</p>
+      <div class="list-group">
+        <li class="list-group-item active">hey</li>
+        <li class="list-group-item">hi</li>
+        <li class="list-group-item">hello</li>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <div class="col-md-9">
+      <div class="card" style="width: 100%;">
+        <img class="card-img-top" style="width:100%" src="<%= finddata.image %>">
+        <div class="card-body">
+          <h5 class="pull-right">$<%=finddata.price%>/night</h5>
+          <h3><a href="#"><%= finddata.name %></a></h3>
+          <p><%= finddata.description %></p>
+          <p>
+            <em>
+              Submitted by <%=finddata.author.username%>
+            </em>
+          </p>
+          <% if(currentUser && finddata.author.id.equals(currentUser._id)){ %>
+          <a class="btn btn-xs btn-warning" href="/campground/<%=finddata._id%>/edit">EDIT</a>
+          <form style="display:inline;" action="/campground/<%=finddata._id%>?_method=DELETE" method="POST">
+            <button class="btn-group btn-group-sm btn-danger">DELETE</button>
+          </form>
+          <% } %>
+        </div>
+        <div class="alert alert-warning alert-dismissible fade show">
+          <p class="text-right">
+            <a href="/campground/<%=finddata._id%>/comments/new" class="btn btn-primary">add comment</a>
+          </p>
+          <hr>
+          <% for(var i=0;i<finddata.comments.length;i++){ %>
+          <div class="row">
+            <div class="col-md-12">
+              <strong><%= finddata.comments[i].author.username %></strong>
+              <span class="float-right"> 5 days ago </span>
+              <p>
+                <%= finddata.comments[i].text %>
+              </p>
+              <% if(currentUser && finddata.comments[i].author.id.equals(currentUser._id)){ %>
+              <a href="/campground/<%=finddata._id%>/comments/<%=finddata.comments[i]._id%>/edit"
+                class="btn btn-sm btn-warning">EDIT</a>
+              <form action="/campground/<%=finddata._id%>/comments/<%=finddata.comments[i]._id%>?_method=DELETE"
+                method="POST">
+                <input type="submit" class="btn btn-sm btn-danger" value="delete">
+              </form>
+              <% } %>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- <script>
+  // function initMap() {
+  //   var lat = <%= finddata.lat %>;
+  //   var lng = <%= finddata.lng %>;
+  //   var center = { lat: lat, lng: lng };
+  //   console.log(center);
+  //   var map = new google.maps.Map(document.getElementById('map'), {
+  //     zoom: 8,
+  //     center: center,
+  //     scrollwheel: false
+  //   });
+    var contentString = `
+        <strong><%= finddata.name %><br />
+        <%= finddata.location %></strong>
+        <p><%= finddata.description %></p>
+      `
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+    var marker = new google.maps.Marker({
+      position: center,
+      map: map
+    });
+    marker.addListener('click', function () {
+      infowindow.open(map, marker);
+    });
+  }
+</script> -->
+<!-- <script async defer -->
+  <!-- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYnfNpTPmCwfdEzvc8Y8tPWdPMFAysUls&callback=initMap"
+  type="text/javascript"></script> -->
+
+<%- include("partials/footers") %>
