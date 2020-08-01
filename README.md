@@ -1,5 +1,5 @@
 # webApp
-* user own dashboard
+* user's own dashboard
 * add/remove comment on post
 * add/delete pictures
 * user's authentication
