@@ -1,3 +1,11 @@
-# camps
+# webApp
+* user own dashboard
+* add/remove comment on post
+* add/delete pictures
+* user's authentication
 
-go to this : https://dashboard.heroku.com/apps/pacific-dawn-24999
+database: MongoDB
+
+go to this : https://pacific-dawn-24999.herokuapp.com/
+
+
